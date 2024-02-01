@@ -104,14 +104,30 @@ createApp({
 
         newMessage(){
             if (this.newMessage !== ''){
-                let oraAttuale = newDate()
-                let newMessage = {
+                const oraAttuale = newDate()
+                const newMessage = {
                     date:  `${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
                     message: this.newMessage,
                     status: 'sent',
                 }
 
                 this.contacts[this.utente].messages.push(newMessage)
+                setTimeout(() => {
+                    this.rispMessage();
+                }, 1000);
+            }
+            this.newMessage = ""
+        },
+
+        rispMessage(){
+            if (this.newReply === "ciao"){
+                const oraAttuale = newDate()
+                const newMessageTwo = {
+                    date: `${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
+                    message: this.newReply,
+                    status: 'received'
+                }
+                this.contacts[this.utente].messages.push(newMessageTwo)
             }
         }
 
