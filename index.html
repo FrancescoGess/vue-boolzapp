@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolzapp</title>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css'
+        integrity='sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=='
+        crossorigin='anonymous' />
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css'
+        integrity='sha512-tx5+1LWHez1QiaXlAyDwzdBTfDjX07GMapQoFTS74wkcPMsI3So0KYmFe6EHZjI8+eSG0ljBlAQc3PQ5BTaZtQ=='
+        crossorigin='anonymous' />
+
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="py-5">
+
+    <div id="app" class="container">
+        <div class="row h-100">
+            <div
+                id="col-left"
+                class="col-5 border px-0 d-flex flex-column">
+
+                <div id="col-left-top" class="p-2 d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <figure>
+                            <img src="./img/img/avatar_io.jpg" class="rounded-circle" width="65" alt="avatar personale">
+                        </figure>
+                        <span>Sofia</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+
+                <div id="col-left-notifiche" class="p-2 d-flex align-items-center gap-3">
+                    <div id="bell" class="rounded-circle bg-light">
+                        <i class="fa fa-bell-slash" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h3 class="fs-6">Ricevi notifiche di nuovi messaggi</h3>
+                        <a href="">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+
+                <div id="col-left-search" class="p-2 ">
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </span>
+                        <input 
+                        v-model="cercaCont"
+                        v-on:input="contatto"
+                        :class="`border d-flex align-items-center justify-content-between`"
+                        type="text" 
+                        class="form-control" placeholder="Cerca nella chat..." 
+                        aria-label="Username"
+                        aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+                <div id="col-left-chats"
+                    class="h-100 d-flex flex-grow-1 bg-light overflow-y-scroll">
+                    <div class="w-100">
+                        
+                        <div
+                            v-for="(element, index) in contacts"
+                            @click="changeUser(index)"
+                            class="p-2 border d-flex align-items-center justify-content-between gap-2">
+
+                            <div class="d-flex align-items-center">
+                                <figure>
+                                    <img
+                                    :src="element.avatar"
+                                    alt=""
+                                    class="rounded-circle"
+                                    width="65">
+                                </figure>
+                                <div>
+                                    <span>
+                                        {{ element.name }}
+                                    </span>
+                                    <p class="ultimo-messaggio">
+                                        {{ element.messages[element.messages.length - 1].message }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="ultimo-messaggio">
+                                    {{ element.messages[element.messages.length - 1].date }}
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div
+                id="col-right"
+                class="col-7 border px-0 d-flex flex-column">
+
+                <div id="col-left-top" class="p-2 d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center gap-3">
+                        <figure>
+                            <img :src=" `./img/avatar_1.jpg` " class="rounded-circle" width="65" alt="avatar personale">
+                        </figure>
+                        <div>
+                            <span>Michele</span>
+                            <p class="ultimo-accesso">Ultimo accesso oggi alle 12:00</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-paperclip"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                </div>
+
+                <div
+                    id="col-right-chat"
+                    class="flex-grow-1 overflow-y-scroll p-3">
+
+
+
+                        <div
+                            
+                            class=" sent ms-auto p-3 rounded position-relative mb-4">
+                            <p class="m-0">
+                                topo gigio
+                            </p>
+                            <span>
+                                15:00
+                            </span>
+                        </div>
+                    
+                    
+                        <div class="received bg-light p-3 rounded position-relative">
+                            <p class="m-0">
+                                hai portato a spasso il cane
+                            </p>
+                            <span>
+                                15:00
+                            </span>
+                        </div>
+                    
+                </div>
+
+                <div id="col-right-new-message" class="d-flex align-items-center p-2 gap-3">
+                    <i class="far fa-smile px-3"></i>
+                    <div class="w-100">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="newMessage"
+                            id="newMessage"
+                            placeholder="Nuovo messaggio.."
+                        />
+                    </div>
+                    <i class="fa fa-microphone px-3" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js'
+        integrity='sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg=='
+        crossorigin='anonymous'></script>
+
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
