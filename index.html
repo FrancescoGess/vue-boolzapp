@@ -157,6 +157,7 @@
                     <i class="far fa-smile px-3"></i>
                     <div class="w-100">
                         <input
+                            v-model="newMessage" @keyup.enter="addMessage"
                             type="text"
                             class="form-control"
                             name="newMessage"

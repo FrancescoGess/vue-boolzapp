@@ -102,5 +102,18 @@ createApp({
          this.utente = index
         },
 
+        newMessage(){
+            if (this.newMessage !== ''){
+                let oraAttuale = newDate()
+                let newMessage = {
+                    date:  `${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
+                    message: this.newMessage,
+                    status: 'sent',
+                }
+
+                this.contacts[this.utente].messages.push(newMessage)
+            }
+        }
+
     }
 }, ).mount('#app')
