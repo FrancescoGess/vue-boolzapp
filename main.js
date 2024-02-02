@@ -142,8 +142,8 @@ createApp({
                           element.visible = false;
                       }
                   });
-              } {
-                else this.contacts.forEach(element => {
+              } 
+                else { this.contacts.forEach(element => {
                   element.visible = true;
               });
          }
