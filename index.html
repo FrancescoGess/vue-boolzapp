@@ -26,7 +26,11 @@
                 id="col-left"
                 class="col-5 border px-0 d-flex flex-column">
 
-                <div id="col-left-top" class="p-2 d-flex align-items-center justify-content-between">
+                <div 
+                
+                id="col-left-top"
+                :class="{ 'd-block': element.visible, 'd-none': !element.visible }"
+                class="p-2 d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <figure>
                             <img src="./img/img/avatar_io.jpg" class="rounded-circle" width="65" alt="avatar personale">

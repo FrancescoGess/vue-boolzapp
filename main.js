@@ -94,7 +94,7 @@ createApp({
 
     },
     mounted() {
-        // console.log('Hello');
+        
     },
     methods: {
         changeUser(index)
@@ -127,25 +127,26 @@ createApp({
                     message: this.newReply,
                     status: 'received'
                 }
-                this.contacts[this.utente].messages.push(newMessageTwo)
+                 this.contacts[this.utente].messages.push(newMessageTwo)
             }
         },
 
         //funzione filtro contatti
 
-        cercaNome(){
-            if(this.cercaNome.trim() !== ''){
-                this.contacts.forEach(element => {
-                    if (element.name.toLowerCase().includes(this.cercaNome.toLowerCase())){
-                        element.visible = true;
-                    } else {
-                        element.visible = false;
-                    }
-                });
-            } else this.contacts.forEach(element => {
-                element.visible = true;
-            })
-        }
+         cercaNome(){
+              if(this.cercaCont.trim() !== ''){
+                  this.contacts.forEach(element => {
+                      if (element.name.toLowerCase().includes(this.cercaCont.toLowerCase())){
+                          element.visible = true;
+                      } else {
+                          element.visible = false;
+                      }
+                  });
+              } {
+                else this.contacts.forEach(element => {
+                  element.visible = true;
+              });
+         }
 
     }
 }, ).mount('#app')
