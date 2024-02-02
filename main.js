@@ -99,11 +99,11 @@ createApp({
     methods: {
         changeUser(index)
             {
-         this.utente = index
+         this.activeChat = index
         },
 
         newMessage(){
-            if (this.newMessage !== ''){
+            if (this.newMessage.trim() !== ''){
                 const oraAttuale = newDate()
                 const newMessage = {
                     date:  `${oraCorrente.getHours()}:${oraCorrente.getMinutes()}`,
@@ -111,7 +111,7 @@ createApp({
                     status: 'sent',
                 }
 
-                this.contacts[this.utente].messages.push(newMessage)
+                this.contacts[this.activeChat].messages.push(newMessage)
                 setTimeout(() => {
                     this.rispMessage();
                 }, 1000);
@@ -129,6 +129,22 @@ createApp({
                 }
                 this.contacts[this.utente].messages.push(newMessageTwo)
             }
+        },
+
+        //funzione filtro contatti
+
+        cercaNome(){
+            if(this.cercaNome.trim() !== ''){
+                this.contacts.forEach(element => {
+                    if (element.name.toLowerCase().includes(this.cercaNome.toLowerCase())){
+                        element.visible = true;
+                    } else {
+                        element.visible = false;
+                    }
+                });
+            } else this.contacts.forEach(element => {
+                element.visible = true;
+            })
         }
 
     }

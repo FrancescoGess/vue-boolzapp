@@ -57,7 +57,7 @@
                         </span>
                         <input 
                         v-model="cercaCont"
-                        v-on:input="contatto"
+                        @keyup="cercaNome"
                         :class="`border d-flex align-items-center justify-content-between`"
                         type="text" 
                         class="form-control" placeholder="Cerca nella chat..." 
